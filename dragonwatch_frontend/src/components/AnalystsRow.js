@@ -14,7 +14,7 @@ function AnalystsRow({ analyst, onEdit, onDelete }) {
           </button>
         </td>
         <td>
-          <button type="button" onClick={() => onDelete(analyst._id)}>
+          <button type="button" onClick={() => onDelete(analyst.id)}>
             Delete
           </button>
         </td>

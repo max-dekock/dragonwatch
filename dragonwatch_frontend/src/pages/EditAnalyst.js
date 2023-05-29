@@ -7,10 +7,10 @@ export const EditAnalyst = () => {
   const history = useHistory();
   const { id } = useParams();
 
-  useEffect(async () => {
-    const response = await fetch(`/api/analysts/${id}`);
-    const responseBody = await response.json();
-    setAnalyst(responseBody);
+  useEffect(() => {
+    fetch(`/api/analysts/${id}`)
+      .then(response => response.json())
+      .then(responseBody => setAnalyst(responseBody));
   }, [id]);
 
   const editAnalyst = async () => {

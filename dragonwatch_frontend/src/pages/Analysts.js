@@ -3,18 +3,23 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import AnalystsTable from "../components/AnalystsTable";
 import { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, useLocation, Link } from "react-router-dom";
 
 function Analysts() {
   // Use the history for updating
   const history = useHistory();
+  const location = useLocation();
 
   // Use state to bring in data
   const [analysts, setAnalysts] = useState([]);
 
   // RETRIEVE the list of analysts
   const loadAnalysts = async () => {
-    const response = await fetch("/api/analysts"); // call to server to retrieve list of analysts
+    const response = await fetch("/api/analysts", {
+      headers: {
+        "Accept": "application/json"
+      }
+    }); // call to server to retrieve list of analysts
     const analysts = await response.json();
     setAnalysts(analysts);
   };
@@ -46,7 +51,7 @@ function Analysts() {
   // LOAD the analysts
   useEffect(() => {
     loadAnalysts();
-  }, []);
+  }, [location]);
 
   return (
     <>
@@ -62,7 +67,7 @@ function Analysts() {
         onDelete={onDeleteAnalyst}
       ></AnalystsTable>
       <button type="button">
-        <Link to="../add-analyst">Add Analyst</Link>
+        <Link to="/analysts/add">Add Analyst</Link>
       </button>
     </>
   );
