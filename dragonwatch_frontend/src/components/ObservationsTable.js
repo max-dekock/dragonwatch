@@ -1,7 +1,7 @@
 import React from "react";
 import ObservationsRow from "./ObservationsRow";
 
-function ObservationsTable({ observations }) {
+function ObservationsTable({ observations, onEdit, onDelete }) {
   return (
     <>
       <table>
@@ -15,7 +15,12 @@ function ObservationsTable({ observations }) {
         </thead>
         <tbody>
           {observations.map((observation, i) => (
-            <ObservationsRow observation={observation} key={i} />
+            <ObservationsRow
+              observation={observation}
+              key={i}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
           ))}
         </tbody>
       </table>

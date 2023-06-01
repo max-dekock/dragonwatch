@@ -1,7 +1,7 @@
 import React from "react";
 import DragonsRow from "./DragonsRow";
 
-function DragonsTable({ dragons }) {
+function DragonsTable({ dragons, onEdit, onDelete }) {
   return (
     <>
       <table>
@@ -19,7 +19,12 @@ function DragonsTable({ dragons }) {
         </thead>
         <tbody>
           {dragons.map((dragon, i) => (
-            <DragonsRow dragon={dragon} key={i} />
+            <DragonsRow
+              dragon={dragon}
+              key={i}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
           ))}
         </tbody>
       </table>
