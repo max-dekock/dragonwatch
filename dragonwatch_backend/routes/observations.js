@@ -3,9 +3,9 @@ const router = express.Router();
 
 const db = require("../db.js");
 
-// get all dragons
+// get all observations
 router.get("/", (_req, res) => {
-  db.query("SELECT * FROM Dragons", (err, rows, fields) => {
+  db.query("SELECT * FROM Observations", (err, rows, fields) => {
     if (err) {
       res.status(500).send(err.message);
     } else {
@@ -14,11 +14,11 @@ router.get("/", (_req, res) => {
   });
 });
 
-// get one dragon
+// get one observation
 router.get("/:id", (req, res) => {
   console.log(req.body.id);
   db.query(
-    "SELECT * FROM Dragons WHERE id = ?",
+    "SELECT * FROM Observations WHERE id = ?",
     [req.params.id],
     (err, rows, fields) => {
       if (err) {
@@ -33,16 +33,12 @@ router.get("/:id", (req, res) => {
 
 // create dragon
 router.post("/", (req, res) => {
-  const nickame = req.body.nickame;
-  const sex = req.body.sex;
-  const color = req.body.color;
-  const length = req.body.length;
-  const wingspan = req.body.wingspan;
-  const hatch_year = req.body.hatch_year;
-  const identifying_marks = req.body.identifying_marks;
+  const volunteer_id = req.body.volunteer_id;
+  const observation_time = req.body.observation_time;
+  const location = req.body.location;
   db.query(
-    "INSERT INTO Dragons (nickame, sex, color, length, wingspan, hatch_year, identifying_marks) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    [nickame, sex, color, length, wingspan, hatch_year, identifying_marks],
+    "INSERT INTO Dragons (volunteer_id, observation_time, location) VALUES (?, ?, ?)",
+    [volunteer_id, observation_time, location],
     (err, rows, fields) => {
       if (err) {
         res.status(500).send(err.message);
@@ -56,16 +52,12 @@ router.post("/", (req, res) => {
 // update dragon
 router.put("/:id", (req, res) => {
   const id = req.params.id;
-  const nickame = req.params.nickame;
-  const sex = req.params.sex;
-  const color = req.params.color;
-  const length = req.params.length;
-  const wingspan = req.params.wingspan;
-  const hatch_year = req.params.hatch_year;
-  const identifying_marks = req.params.identifying_marks;
+  const volunteer_id = req.params.volunteer_id;
+  const observation_time = req.params.observation_time;
+  const location = req.params.location;
   db.query(
-    "UPDATE Dragons SET nickame = ?, sex = ?, color = ?, length = ?, wingspan = ?, hatch_year = ?, identifying_marks = ?, WHERE id = ?",
-    [nickame, sex, color, length, wingspan, hatch_year, identifying_marks, id],
+    "UPDATE Dragons SET volunteer_id = ?, observation_time = ?, location = ?, WHERE id = ?",
+    [volunteer_id, observation_time, location, id],
     (err, rows, fields) => {
       if (err) {
         res.status(500).send(err.message);
