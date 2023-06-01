@@ -1,7 +1,7 @@
 import React from "react";
 import VolunteersRow from "./VolunteersRow";
 
-function VolunteersTable({ volunteers }) {
+function VolunteersTable({ volunteers, onEdit, onDelete }) {
   return (
     <>
       <table>
@@ -15,7 +15,12 @@ function VolunteersTable({ volunteers }) {
         </thead>
         <tbody>
           {volunteers.map((volunteer, i) => (
-            <VolunteersRow volunteer={volunteer} key={i} />
+            <VolunteersRow
+              volunteer={volunteer}
+              key={i}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
           ))}
         </tbody>
       </table>

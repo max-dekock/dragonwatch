@@ -1,7 +1,7 @@
 import React from "react";
 import DCSsRow from "./DCSsRow";
 
-function DCSsTable({ DCSs }) {
+function DCSsTable({ DCSs, onEdit, onDelete }) {
   return (
     <>
       <table>
@@ -14,7 +14,7 @@ function DCSsTable({ DCSs }) {
         </thead>
         <tbody>
           {DCSs.map((DCS, i) => (
-            <DCSsRow DCS={DCS} key={i} />
+            <DCSsRow DCS={DCS} key={i} onEdit={onEdit} onDelete={onDelete} />
           ))}
         </tbody>
       </table>

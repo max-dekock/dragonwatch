@@ -1,7 +1,7 @@
 import React from "react";
 import ODsRow from "./ODsRow";
 
-function ODsTable({ ODs }) {
+function ODsTable({ ODs, onEdit, onDelete }) {
   return (
     <>
       <table>
@@ -16,7 +16,12 @@ function ODsTable({ ODs }) {
         </thead>
         <tbody>
           {ODs.map((OD, i) => (
-            <ODsRow observation={OD} key={i} />
+            <ODsRow
+              observation={OD}
+              key={i}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
           ))}
         </tbody>
       </table>

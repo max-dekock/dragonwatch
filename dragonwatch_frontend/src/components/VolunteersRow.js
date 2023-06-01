@@ -1,6 +1,6 @@
 import React from "react";
 
-function VolunteersRow({ volunteer }) {
+function VolunteersRow({ volunteer, onEdit, onDelete }) {
   return (
     <>
       <tr>
@@ -8,6 +8,16 @@ function VolunteersRow({ volunteer }) {
         <td>{volunteer.first_name}</td>
         <td>{volunteer.last_name}</td>
         <td>{volunteer.email}</td>
+        <td>
+          <button type="button" onClick={() => onEdit(volunteer)}>
+            Edit
+          </button>
+        </td>
+        <td>
+          <button type="button" onClick={() => onDelete(volunteer.id)}>
+            Delete
+          </button>
+        </td>
       </tr>
     </>
   );
