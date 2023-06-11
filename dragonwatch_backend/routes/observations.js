@@ -31,13 +31,13 @@ router.get("/:id", (req, res) => {
   );
 });
 
-// create dragon
+// create observation
 router.post("/", (req, res) => {
   const volunteer_id = req.body.volunteer_id;
   const observation_time = req.body.observation_time;
   const location = req.body.location;
   db.query(
-    "INSERT INTO Dragons (volunteer_id, observation_time, location) VALUES (?, ?, ?)",
+    "INSERT INTO Observations (volunteer_id, observation_time, location) VALUES (?, ?, ?)",
     [volunteer_id, observation_time, location],
     (err, rows, fields) => {
       if (err) {
@@ -49,14 +49,14 @@ router.post("/", (req, res) => {
   );
 });
 
-// update dragon
+// update observation
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   const volunteer_id = req.params.volunteer_id;
   const observation_time = req.params.observation_time;
   const location = req.params.location;
   db.query(
-    "UPDATE Dragons SET volunteer_id = ?, observation_time = ?, location = ?, WHERE id = ?",
+    "UPDATE Observations SET volunteer_id = ?, observation_time = ?, location = ?, WHERE id = ?",
     [volunteer_id, observation_time, location, id],
     (err, rows, fields) => {
       if (err) {
@@ -68,10 +68,10 @@ router.put("/:id", (req, res) => {
   );
 });
 
-// delete dragon
+// delete observations
 router.delete("/:id", (req, res) => {
   const id = req.params.id;
-  db.query("DELETE FROM Dragons WHERE id = ?", [id], (err, rows, fields) => {
+  db.query("DELETE FROM Observations WHERE id = ?", [id], (err, rows, fields) => {
     if (err) {
       res.status(500).send(err.message);
       return;
